@@ -1,0 +1,43 @@
+{
+  "name": "bayfrontmedia/multi-curl",
+  "description": "A simple HTTP client to make single or asynchronous requests utilizing the cURL library.",
+  "homepage": "https://github.com/bayfrontmedia/multi-curl",
+  "license" : "MIT",
+  "version": "1.0.0",
+  "type": "library",
+  "keywords": [
+    "php",
+    "http",
+    "client",
+    "request",
+    "response",
+    "curl",
+    "asynchronous"
+  ],
+  "authors": [
+    {
+      "name": "John Robinson",
+      "email": "john@bayfrontmedia.com",
+      "homepage": "https://www.bayfrontmedia.com",
+      "role": "Developer"
+    }
+  ],
+  "funding": [
+    {
+      "type": "patreon",
+      "url": "https://www.patreon.com/bayfrontmedia"
+    }
+  ],
+  "require": {
+    "php": ">=7.1.0",
+    "ext-curl": "*",
+    "ext-json": "*",
+    "bayfrontmedia/php-array-helpers": "^1.0.0",
+    "bayfrontmedia/php-mime-types": "^1.0.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "Bayfront\\MultiCurl\\": "src/"
+    }
+  }
+}
