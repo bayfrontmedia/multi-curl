@@ -133,6 +133,8 @@ class Async extends ClientParent
     /**
      * Execute the given cURL session
      *
+     * The response methods will only return results after the execute() method has been called.
+     *
      * @return self
      */
 

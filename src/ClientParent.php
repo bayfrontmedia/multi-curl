@@ -173,9 +173,9 @@ class ClientParent
     /**
      * Returns the cURL handle
      *
-     * @throws ClientException
-     *
      * @returns resource
+     *
+     * @throws ClientException
      */
 
     public function getHandle()
@@ -440,7 +440,7 @@ class ClientParent
      *
      * @param string $url
      * @param array $data
-     * @param bool $json_encode (json_encode the $data array and sets the Content-Type header as application/json, if
+     * @param bool $json_encode (json_encode the $data array and set the Content-Type header as application/json, if
      *     not already defined)
      *
      * @return self
@@ -456,7 +456,7 @@ class ClientParent
      *
      * @param string $url
      * @param array $data
-     * @param bool $json_encode (json_encode the $data array and sets the Content-Type header as application/json, if
+     * @param bool $json_encode (json_encode the $data array and set the Content-Type header as application/json, if
      *     not already defined)
      *
      * @return self
@@ -472,7 +472,7 @@ class ClientParent
      *
      * @param string $url
      * @param array $data
-     * @param bool $json_encode (json_encode the $data array and sets the Content-Type header as application/json, if
+     * @param bool $json_encode (json_encode the $data array and set the Content-Type header as application/json, if
      *     not already defined)
      *
      * @return self
@@ -488,7 +488,7 @@ class ClientParent
      *
      * @param string $url
      * @param array $data
-     * @param bool $json_encode (json_encode the $data array and sets the Content-Type header as application/json, if
+     * @param bool $json_encode (json_encode the $data array and set the Content-Type header as application/json, if
      *     not already defined)
      *
      * @return self
@@ -504,7 +504,7 @@ class ClientParent
      *
      * @param string $url
      * @param array $data
-     * @param bool $json_encode (json_encode the $data array and sets the Content-Type header as application/json, if
+     * @param bool $json_encode (json_encode the $data array and set the Content-Type header as application/json, if
      *     not already defined)
      *
      * @return self
@@ -560,7 +560,7 @@ class ClientParent
     /**
      * Returns body of the previous request, or null if not existing
      *
-     * @param bool $json_decode (Decode JSON contents to a PHP array)
+     * @param bool $json_decode (Decode JSON contents to an array)
      *
      * @return mixed
      */
@@ -622,7 +622,7 @@ class ClientParent
      * @return string
      */
 
-    public function getErrorMessage()
+    public function getErrorMessage(): string
     {
 
         if (isset($this->responses[$this->current_handle]['error_message'])) {
@@ -651,7 +651,7 @@ class ClientParent
     }
 
     /**
-     * Returns array of information about the previous request, or a single option constant, or null if not existing
+     * Returns array of information about the previous request, a single option constant, or null if not existing
      *
      * @param mixed $opt (Optional option constant)
      *

@@ -204,7 +204,7 @@ A `Bayfront\MultiCurl\ClientException` exception will be thrown if the ID does n
 
 **Parameters:**
 
-- `$id` (self)
+- `$id` (string)
 
 **Returns:**
 
@@ -392,9 +392,9 @@ Sets token authorization header using a given token.
 
 **Description:**
 
-**NOTE:** This method is only available in the `Client` class.
+(Only available in `Client` class)
 
-Initiates download of file in the browser.
+Initiates file download in the browser.
 
 **Parameters:**
 
@@ -402,7 +402,7 @@ Initiates download of file in the browser.
 
 **Returns:**
 
-- (mixed)
+- (void)
 
 **Example:**
 
@@ -447,7 +447,7 @@ Executes `DELETE` request, including optional data.
 
 - `$url` (string)
 - `$data = []` (array)
-- `$json_encode = false` (bool): json_encode the `$data` array and sets the `Content-Type` header as `application/json`, if not already defined
+- `$json_encode = false` (bool): json_encode the `$data` array and set the `Content-Type` header as `application/json`, if not already defined
 
 **Returns:**
 
@@ -465,7 +465,7 @@ Executes `HEAD` request, including optional data.
 
 - `$url` (string)
 - `$data = []` (array)
-- `$json_encode = false` (bool): json_encode the `$data` array and sets the `Content-Type` header as `application/json`, if not already defined
+- `$json_encode = false` (bool): json_encode the `$data` array and set the `Content-Type` header as `application/json`, if not already defined
 
 **Returns:**
 
@@ -483,7 +483,7 @@ Executes `PATCH` request, including optional data.
 
 - `$url` (string)
 - `$data = []` (array)
-- `$json_encode = false` (bool): json_encode the `$data` array and sets the `Content-Type` header as `application/json`, if not already defined
+- `$json_encode = false` (bool): json_encode the `$data` array and set the `Content-Type` header as `application/json`, if not already defined
 
 **Returns:**
 
@@ -501,7 +501,7 @@ Executes `POST` request, including optional data.
 
 - `$url` (string)
 - `$data = []` (array)
-- `$json_encode = false` (bool): json_encode the `$data` array and sets the `Content-Type` header as `application/json`, if not already defined
+- `$json_encode = false` (bool): json_encode the `$data` array and set the `Content-Type` header as `application/json`, if not already defined
 
 **Returns:**
 
@@ -519,7 +519,7 @@ Executes `PUT` request, including optional data.
 
 - `$url` (string)
 - `$data = []` (array)
-- `$json_encode = false` (bool): json_encode the `$data` array and sets the `Content-Type` header as `application/json`, if not already defined
+- `$json_encode = false` (bool): json_encode the `$data` array and set the `Content-Type` header as `application/json`, if not already defined
 
 **Returns:**
 
@@ -586,7 +586,7 @@ Returns body of the previous request, or null if not existing.
 
 **Parameters:**
 
-- `$json_decode = false` (bool)
+- `$json_decode = false` (bool): Decode JSON contents to an array
 
 **Returns:**
 
@@ -656,7 +656,7 @@ Returns error message of the previous request, or an empty string if no error oc
 
 **Returns:**
 
-- (mixed)
+- (string)
 
 <hr />
 
@@ -680,7 +680,7 @@ Returns status code of the previous request, or zero if not existing.
 
 **Description:**
 
-Returns array of information about the previous request, or a single option constant, or null if not existing.
+Returns array of information about the previous request, a single option constant, or null if not existing.
 
 **Parameters:**
 

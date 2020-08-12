@@ -172,7 +172,7 @@ class Client extends ClientParent
     }
 
     /**
-     * Initiates download of file in the browser
+     * Initiates file download in the browser
      *
      * @param string $url
      *
