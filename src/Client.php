@@ -136,6 +136,13 @@ class Client extends ClientParent
         return $this;
     }
 
+    public function connect(string $url, array $data = [], bool $json_encode = false): ClientParent
+    {
+        parent::connect($url, $data, $json_encode);
+        $this->_execute();
+        return $this;
+    }
+
     public function delete(string $url, array $data = [], bool $json_encode = false): ClientParent
     {
         parent::delete($url, $data, $json_encode);
@@ -146,6 +153,13 @@ class Client extends ClientParent
     public function head(string $url, array $data = [], bool $json_encode = false): ClientParent
     {
         parent::head($url, $data, $json_encode);
+        $this->_execute();
+        return $this;
+    }
+
+    public function options(string $url, array $data = [], bool $json_encode = false): ClientParent
+    {
+        parent::options($url, $data, $json_encode);
         $this->_execute();
         return $this;
     }
@@ -167,6 +181,13 @@ class Client extends ClientParent
     public function put(string $url, array $data = [], bool $json_encode = false): ClientParent
     {
         parent::put($url, $data, $json_encode);
+        $this->_execute();
+        return $this;
+    }
+
+    public function trace(string $url, array $data = [], bool $json_encode = false): ClientParent
+    {
+        parent::trace($url, $data, $json_encode);
         $this->_execute();
         return $this;
     }

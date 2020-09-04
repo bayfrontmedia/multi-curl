@@ -38,12 +38,15 @@ class ClientParent
 
     }
 
+    const METHOD_CONNECT = 'CONNECT';
     const METHOD_DELETE = 'DELETE';
     const METHOD_GET = 'GET';
     const METHOD_HEAD = 'HEAD';
+    const METHOD_OPTIONS = 'OPTIONS';
     const METHOD_PATCH = 'PATCH';
     const METHOD_POST = 'POST';
     const METHOD_PUT = 'PUT';
+    const METHOD_TRACE = 'TRACE';
 
     protected $current_handle;
 
@@ -354,11 +357,38 @@ class ClientParent
 
         switch ($request_method) {
 
+            case self::METHOD_CONNECT:
+
+                $this->setOptions([
+                    CURLOPT_URL => $url,
+                    CURLOPT_CUSTOMREQUEST => self::METHOD_CONNECT
+                ]);
+
+                break;
+
             case self::METHOD_DELETE:
 
                 $this->setOptions([
                     CURLOPT_URL => $url,
                     CURLOPT_CUSTOMREQUEST => self::METHOD_DELETE
+                ]);
+
+                break;
+
+            case self::METHOD_HEAD:
+
+                $this->setOptions([
+                    CURLOPT_URL => $url,
+                    CURLOPT_CUSTOMREQUEST => self::METHOD_HEAD
+                ]);
+
+                break;
+
+            case self::METHOD_OPTIONS:
+
+                $this->setOptions([
+                    CURLOPT_URL => $url,
+                    CURLOPT_CUSTOMREQUEST => self::METHOD_OPTIONS
                 ]);
 
                 break;
@@ -386,6 +416,15 @@ class ClientParent
                 $this->setOptions([
                     CURLOPT_URL => $url,
                     CURLOPT_CUSTOMREQUEST => self::METHOD_PUT
+                ]);
+
+                break;
+
+            case self::METHOD_TRACE:
+
+                $this->setOptions([
+                    CURLOPT_URL => $url,
+                    CURLOPT_CUSTOMREQUEST => self::METHOD_TRACE
                 ]);
 
                 break;
@@ -436,6 +475,22 @@ class ClientParent
     }
 
     /**
+     * Creates a CONNECT request, including optional data
+     *
+     * @param string $url
+     * @param array $data
+     * @param bool $json_encode (json_encode the $data array and set the Content-Type header as application/json, if
+     *     not already defined)
+     *
+     * @return self
+     */
+
+    public function connect(string $url, array $data = [], bool $json_encode = false): self
+    {
+        return $this->_createRequest(self::METHOD_CONNECT, $url, $data, $json_encode);
+    }
+
+    /**
      * Creates a DELETE request, including optional data
      *
      * @param string $url
@@ -465,6 +520,22 @@ class ClientParent
     public function head(string $url, array $data = [], bool $json_encode = false): self
     {
         return $this->_createRequest(self::METHOD_HEAD, $url, $data, $json_encode);
+    }
+
+    /**
+     * Creates an OPTIONS request, including optional data
+     *
+     * @param string $url
+     * @param array $data
+     * @param bool $json_encode (json_encode the $data array and set the Content-Type header as application/json, if
+     *     not already defined)
+     *
+     * @return self
+     */
+
+    public function options(string $url, array $data = [], bool $json_encode = false): self
+    {
+        return $this->_createRequest(self::METHOD_OPTIONS, $url, $data, $json_encode);
     }
 
     /**
@@ -513,6 +584,22 @@ class ClientParent
     public function put(string $url, array $data = [], bool $json_encode = false): self
     {
         return $this->_createRequest(self::METHOD_PUT, $url, $data, $json_encode);
+    }
+
+    /**
+     * Creates a TRACE request, including optional data
+     *
+     * @param string $url
+     * @param array $data
+     * @param bool $json_encode (json_encode the $data array and set the Content-Type header as application/json, if
+     *     not already defined)
+     *
+     * @return self
+     */
+
+    public function trace(string $url, array $data = [], bool $json_encode = false): self
+    {
+        return $this->_createRequest(self::METHOD_TRACE, $url, $data, $json_encode);
     }
 
     /*

@@ -128,11 +128,14 @@ Once a cURL handle has been created, the following methods can be used:
 **Request**   
 - [download](#download)
 - [get](#get)
+- [connect](#connect)
 - [delete](#delete)
 - [head](#head)
+- [options](#options)
 - [patch](#patch)
 - [post](#post)
 - [put](#put)
+- [trace](#trace)
 
 **Response**
 
@@ -437,6 +440,24 @@ $response = $client->get('posts/1');
 
 <hr />
 
+### connect
+
+**Description:**
+
+Executes `CONNECT` request, including optional data.
+
+**Parameters:**
+
+- `$url` (string)
+- `$data = []` (array)
+- `$json_encode = false` (bool): json_encode the `$data` array and set the `Content-Type` header as `application/json`, if not already defined
+
+**Returns:**
+
+- (self)
+
+<hr />
+
 ### delete
 
 **Description:**
@@ -460,6 +481,24 @@ Executes `DELETE` request, including optional data.
 **Description:**
 
 Executes `HEAD` request, including optional data.
+
+**Parameters:**
+
+- `$url` (string)
+- `$data = []` (array)
+- `$json_encode = false` (bool): json_encode the `$data` array and set the `Content-Type` header as `application/json`, if not already defined
+
+**Returns:**
+
+- (self)
+
+<hr />
+
+### options
+
+**Description:**
+
+Executes `OPTIONS` request, including optional data.
 
 **Parameters:**
 
@@ -514,6 +553,24 @@ Executes `POST` request, including optional data.
 **Description:**
 
 Executes `PUT` request, including optional data.
+
+**Parameters:**
+
+- `$url` (string)
+- `$data = []` (array)
+- `$json_encode = false` (bool): json_encode the `$data` array and set the `Content-Type` header as `application/json`, if not already defined
+
+**Returns:**
+
+- (self)
+
+<hr />
+
+### trace
+
+**Description:**
+
+Executes `TRACE` request, including optional data.
 
 **Parameters:**
 
