@@ -658,7 +658,7 @@ class ClientParent
         if (isset($this->responses[$this->current_handle]['body'])) {
 
             if (true === $json_decode) {
-                return json_decode($this->responses[$this->current_handle]['body']);
+                return json_decode($this->responses[$this->current_handle]['body'], true);
             }
 
             return $this->responses[$this->current_handle]['body'];
