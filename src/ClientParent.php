@@ -129,7 +129,7 @@ class ClientParent
 
         $header_size = curl_getinfo($handle, CURLINFO_HEADER_SIZE);
 
-        $headers = explode("\r\n", substr($response, 0, $header_size));
+        $headers = explode("\n", substr($response, 0, $header_size));
 
         foreach ($headers as $key => $header) {
 
@@ -139,7 +139,7 @@ class ClientParent
 
                 if (isset($exp[1])) {
 
-                    $this->responses[$id]['response_headers'][$exp[0]] = $exp[1];
+                    $this->responses[$id]['response_headers'][trim($exp[0])] = trim($exp[1]);
 
                 }
 
