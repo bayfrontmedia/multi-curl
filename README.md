@@ -639,11 +639,12 @@ echo $response->getHeader('Date');
 
 **Description:**
 
-Returns body of the previous request, or null if not existing.
+Returns body of the previous request, with optional default value if not existing.
 
 **Parameters:**
 
 - `$json_decode = false` (bool): Decode JSON contents to an array
+- `$default = NULL` (mixed)
 
 **Returns:**
 

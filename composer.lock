@@ -4,20 +4,20 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "9b2b380fd6f3bf3089eebb9bde5e692b",
+    "content-hash": "9180b98da6a5793692d81d5053981947",
     "packages": [
         {
             "name": "bayfrontmedia/php-array-helpers",
-            "version": "1.0.1",
+            "version": "v1.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/bayfrontmedia/php-array-helpers.git",
-                "reference": "a5d3dd357f6bee31c857e16b1db0199efb10307e"
+                "reference": "ac938e3b5a252960539e331075d86a1e38bb4264"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/bayfrontmedia/php-array-helpers/zipball/a5d3dd357f6bee31c857e16b1db0199efb10307e",
-                "reference": "a5d3dd357f6bee31c857e16b1db0199efb10307e",
+                "url": "https://api.github.com/repos/bayfrontmedia/php-array-helpers/zipball/ac938e3b5a252960539e331075d86a1e38bb4264",
+                "reference": "ac938e3b5a252960539e331075d86a1e38bb4264",
                 "shasum": ""
             },
             "require": {
@@ -50,7 +50,17 @@
                 "helpers",
                 "php"
             ],
-            "time": "2020-08-02T22:59:39+00:00"
+            "support": {
+                "issues": "https://github.com/bayfrontmedia/php-array-helpers/issues",
+                "source": "https://github.com/bayfrontmedia/php-array-helpers/tree/v1.1.0"
+            },
+            "funding": [
+                {
+                    "url": "https://www.patreon.com/bayfrontmedia",
+                    "type": "patreon"
+                }
+            ],
+            "time": "2020-11-23T16:52:47+00:00"
         },
         {
             "name": "bayfrontmedia/php-mime-types",
@@ -96,6 +106,16 @@
                 "php",
                 "type"
             ],
+            "support": {
+                "issues": "https://github.com/bayfrontmedia/php-mime-types/issues",
+                "source": "https://github.com/bayfrontmedia/php-mime-types/tree/v1.0.0"
+            },
+            "funding": [
+                {
+                    "url": "https://www.patreon.com/bayfrontmedia",
+                    "type": "patreon"
+                }
+            ],
             "time": "2020-07-27T19:05:10+00:00"
         }
     ],
@@ -110,5 +130,6 @@
         "ext-curl": "*",
         "ext-json": "*"
     },
-    "platform-dev": []
+    "platform-dev": [],
+    "plugin-api-version": "2.0.0"
 }

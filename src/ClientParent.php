@@ -14,7 +14,7 @@ use Bayfront\ArrayHelpers\Arr;
 class ClientParent
 {
 
-    protected const MULTI_CURL_VERSION = '1.0.0';
+    protected const MULTI_CURL_VERSION = '1.1.3';
 
     protected $base_url;
 
@@ -79,7 +79,7 @@ class ClientParent
     protected $responses = [];
 
     /**
-     * Sets options during execute()
+     * Sets options during execute().
      *
      * @param string $id
      * @param $handle
@@ -113,7 +113,7 @@ class ClientParent
     }
 
     /**
-     * Extracts headers and body from a response which contains headers
+     * Extracts headers and body from a response which contains headers.
      *
      * @param string $id
      * @param $handle
@@ -154,7 +154,7 @@ class ClientParent
     }
 
     /**
-     * Saves information from a cURL response
+     * Saves information from a cURL response.
      *
      * @param string $id
      * @param $handle
@@ -174,7 +174,7 @@ class ClientParent
     }
 
     /**
-     * Returns the cURL handle
+     * Returns the cURL handle.
      *
      * @returns resource
      *
@@ -194,7 +194,7 @@ class ClientParent
     }
 
     /**
-     * Resets all request settings
+     * Resets all request settings.
      *
      * @return self
      */
@@ -202,6 +202,7 @@ class ClientParent
     public function reset(): self
     {
         $this->requests = [];
+
         return $this;
     }
 
@@ -212,7 +213,7 @@ class ClientParent
      */
 
     /**
-     * Sets default options for a cURL session
+     * Sets default options for a cURL session.
      *
      * @return void
      */
@@ -233,7 +234,7 @@ class ClientParent
     }
 
     /**
-     * Sets an array of options for the cURL session
+     * Sets an array of options for the cURL session.
      *
      * @param array $options
      *
@@ -253,7 +254,7 @@ class ClientParent
     }
 
     /**
-     * Sets an array of headers for the cURL session
+     * Sets an array of headers for the cURL session.
      *
      * @param array $headers
      *
@@ -273,7 +274,7 @@ class ClientParent
     }
 
     /**
-     * Sets token authorization header for the cURL session using a given token
+     * Sets token authorization header for the cURL session using a given token.
      *
      * @param string $token
      *
@@ -294,7 +295,7 @@ class ClientParent
      */
 
     /**
-     * Ensures proper formatting of the request URL
+     * Ensures proper formatting of the request URL.
      *
      * @param string $url
      *
@@ -315,7 +316,7 @@ class ClientParent
     }
 
     /**
-     * Sets the required options for specific request methods
+     * Sets the required options for specific request methods.
      *
      * If $json_encode is true and no Content-Type header has been set, a Content-Type header of "application/json"
      * will be added
@@ -440,7 +441,7 @@ class ClientParent
     }
 
     /**
-     * Creates a GET request, including optional data sent as query parameters
+     * Creates a GET request, including optional data sent as query parameters.
      *
      * @param string $url
      * @param array $data
@@ -475,7 +476,7 @@ class ClientParent
     }
 
     /**
-     * Creates a CONNECT request, including optional data
+     * Creates a CONNECT request, including optional data.
      *
      * @param string $url
      * @param array $data
@@ -491,7 +492,7 @@ class ClientParent
     }
 
     /**
-     * Creates a DELETE request, including optional data
+     * Creates a DELETE request, including optional data.
      *
      * @param string $url
      * @param array $data
@@ -507,7 +508,7 @@ class ClientParent
     }
 
     /**
-     * Creates a HEAD request, including optional data
+     * Creates a HEAD request, including optional data.
      *
      * @param string $url
      * @param array $data
@@ -523,7 +524,7 @@ class ClientParent
     }
 
     /**
-     * Creates an OPTIONS request, including optional data
+     * Creates an OPTIONS request, including optional data.
      *
      * @param string $url
      * @param array $data
@@ -539,7 +540,7 @@ class ClientParent
     }
 
     /**
-     * Creates a PATCH request, including optional data
+     * Creates a PATCH request, including optional data.
      *
      * @param string $url
      * @param array $data
@@ -555,7 +556,7 @@ class ClientParent
     }
 
     /**
-     * Creates a POST request, including optional data
+     * Creates a POST request, including optional data.
      *
      * @param string $url
      * @param array $data
@@ -571,7 +572,7 @@ class ClientParent
     }
 
     /**
-     * Creates a PUT request, including optional data
+     * Creates a PUT request, including optional data.
      *
      * @param string $url
      * @param array $data
@@ -587,7 +588,7 @@ class ClientParent
     }
 
     /**
-     * Creates a TRACE request, including optional data
+     * Creates a TRACE request, including optional data.
      *
      * @param string $url
      * @param array $data
@@ -609,7 +610,7 @@ class ClientParent
      */
 
     /**
-     * Returns array of headers from the previous request
+     * Returns array of headers from the previous request.
      *
      * @return array
      */
@@ -625,7 +626,7 @@ class ClientParent
     }
 
     /**
-     * Returns single header value from the previous request, with optional default value if not existing
+     * Returns single header value from the previous request, with optional default value if not existing.
      *
      * @param string $header
      * @param mixed $default
@@ -645,14 +646,15 @@ class ClientParent
     }
 
     /**
-     * Returns body of the previous request, or null if not existing
+     * Returns body of the previous request, with optional default value if not existing.
      *
      * @param bool $json_decode (Decode JSON contents to an array)
+     * @param mixed $default
      *
      * @return mixed
      */
 
-    public function getBody(bool $json_decode = false)
+    public function getBody(bool $json_decode = false, $default = NULL)
     {
 
         if (isset($this->responses[$this->current_handle]['body'])) {
@@ -665,12 +667,12 @@ class ClientParent
 
         }
 
-        return NULL;
+        return $default;
 
     }
 
     /**
-     * Returns error number of the previous request, or zero if no error exists
+     * Returns error number of the previous request, or zero if no error exists.
      *
      * @return int
      */
@@ -687,7 +689,7 @@ class ClientParent
     }
 
     /**
-     * Is previous request an error
+     * Is previous request an error.
      *
      * @return bool
      */
@@ -704,7 +706,7 @@ class ClientParent
     }
 
     /**
-     * Returns error message of the previous request, or an empty string if no error occurred
+     * Returns error message of the previous request, or an empty string if no error occurred.
      *
      * @return string
      */
@@ -721,7 +723,7 @@ class ClientParent
     }
 
     /**
-     * Returns status code of the previous request, or zero if not existing
+     * Returns status code of the previous request, or zero if not existing.
      *
      * @return int
      */
@@ -738,7 +740,7 @@ class ClientParent
     }
 
     /**
-     * Returns array of information about the previous request, a single option constant, or null if not existing
+     * Returns array of information about the previous request, a single option constant, or null if not existing.
      *
      * @param mixed $opt (Optional option constant)
      *
@@ -767,7 +769,7 @@ class ClientParent
     }
 
     /**
-     * Is status code informational
+     * Is status code informational.
      *
      * @return bool
      */
@@ -782,7 +784,7 @@ class ClientParent
     }
 
     /**
-     * Is status code successful
+     * Is status code successful.
      *
      * @return bool
      */
@@ -797,7 +799,7 @@ class ClientParent
     }
 
     /**
-     * Is status code a redirection
+     * Is status code a redirection.
      *
      * @return bool
      */
@@ -812,7 +814,7 @@ class ClientParent
     }
 
     /**
-     * Is status code a client error
+     * Is status code a client error.
      *
      * @return bool
      */
@@ -827,7 +829,7 @@ class ClientParent
     }
 
     /**
-     * Is status code a server error
+     * Is status code a server error.
      *
      * @return bool
      */
@@ -842,7 +844,7 @@ class ClientParent
     }
 
     /**
-     * Is status code OK (200)
+     * Is status code OK (200).
      *
      * @return bool
      */
@@ -853,7 +855,7 @@ class ClientParent
     }
 
     /**
-     * Is status code forbidden (403)
+     * Is status code forbidden (403).
      *
      * @return bool
      */
@@ -864,7 +866,7 @@ class ClientParent
     }
 
     /**
-     * Is status code not found (404)
+     * Is status code not found (404).
      *
      * @return bool
      */

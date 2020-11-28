@@ -31,7 +31,7 @@
     "php": ">=7.1.0",
     "ext-curl": "*",
     "ext-json": "*",
-    "bayfrontmedia/php-array-helpers": "^1.0.1",
+    "bayfrontmedia/php-array-helpers": "^1.1.0",
     "bayfrontmedia/php-mime-types": "^1.0.0"
   },
   "autoload": {
