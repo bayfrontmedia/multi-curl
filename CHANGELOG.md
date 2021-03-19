@@ -12,6 +12,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `Fixed` for any bug fixes.
 - `Security` in case of vulnerabilities
 
+## [1.1.4] - 2021.03.19
+
+### Fixed
+
+- Fixed bug in `get` method not encoding URL's properly.
+
 ## [1.1.3] - 2020.11.27
 
 ### Added

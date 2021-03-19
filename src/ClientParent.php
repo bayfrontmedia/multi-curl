@@ -458,7 +458,7 @@ class ClientParent
 
             $data = http_build_query($data);
 
-            $url = htmlentities($url . '?' . $data);
+            $url = $url . '?' . urlencode($data);
 
         }
 
