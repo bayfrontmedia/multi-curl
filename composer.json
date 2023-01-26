@@ -28,11 +28,11 @@
     "preferred-install": "dist"
   },
   "require": {
-    "php": ">=7.1.0",
+    "php": "^8.0",
     "ext-curl": "*",
     "ext-json": "*",
-    "bayfrontmedia/php-array-helpers": "^1.3.1",
-    "bayfrontmedia/php-mime-types": "^1.0.0"
+    "bayfrontmedia/php-array-helpers": "^2.0",
+    "bayfrontmedia/php-mime-types": "^2.0"
   },
   "autoload": {
     "psr-4": {

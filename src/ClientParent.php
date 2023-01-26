@@ -1,12 +1,5 @@
 <?php
 
-/**
- * @package multi-curl
- * @link https://github.com/bayfrontmedia/multi-curl
- * @author John Robinson <john@bayfrontmedia.com>
- * @copyright 2020 Bayfront Media
- */
-
 namespace Bayfront\MultiCurl;
 
 use Bayfront\ArrayHelpers\Arr;
@@ -14,9 +7,9 @@ use Bayfront\ArrayHelpers\Arr;
 class ClientParent
 {
 
-    protected const MULTI_CURL_VERSION = '1.1.3';
+    protected const MULTI_CURL_VERSION = '2.0.0';
 
-    protected $base_url;
+    protected string $base_url;
 
     /**
      * Constructor
@@ -48,11 +41,16 @@ class ClientParent
     const METHOD_PUT = 'PUT';
     const METHOD_TRACE = 'TRACE';
 
-    protected $current_handle;
+    /*
+     * PHP does not support type declarations for "resource"
+     * See: https://www.php.net/manual/en/language.types.declarations.php
+     */
+
+    protected mixed $current_handle;
 
     // cURL handles
 
-    protected $handles = [];
+    protected array $handles = [];
 
     /*
      * Keys include:
@@ -63,7 +61,7 @@ class ClientParent
      * url
      */
 
-    protected $requests = [];
+    protected array $requests = [];
 
     /*
      * Keys include:
@@ -76,7 +74,7 @@ class ClientParent
      * http_status_code
      */
 
-    protected $responses = [];
+    protected array $responses = [];
 
     /**
      * Sets options during execute().
@@ -131,9 +129,9 @@ class ClientParent
 
         $headers = explode("\n", substr($response, 0, $header_size));
 
-        foreach ($headers as $key => $header) {
+        foreach ($headers as $header) {
 
-            if (strpos($header, ': ') !== false) {
+            if (str_contains($header, ': ')) {
 
                 $exp = explode(': ', $header, 2);
 
@@ -160,7 +158,7 @@ class ClientParent
      * @param $handle
      */
 
-    protected function _curlSetResponseInfo(string $id, $handle)
+    protected function _curlSetResponseInfo(string $id, $handle): void
     {
 
         $this->responses[$id]['error_number'] = curl_errno($handle);
@@ -305,10 +303,8 @@ class ClientParent
     protected function _getRequestUrl(string $url): string
     {
 
-        if (NULL === $this->base_url || $this->base_url == '') {
-
+        if ($this->base_url == '') {
             return trim(ltrim($url, '/'));
-
         }
 
         return trim(rtrim($this->base_url, '/') . '/' . ltrim($url, '/'));
@@ -629,12 +625,12 @@ class ClientParent
      * Returns single header value from the previous request, with optional default value if not existing.
      *
      * @param string $header
-     * @param mixed $default
+     * @param mixed|null $default
      *
      * @return mixed
      */
 
-    public function getHeader(string $header, $default = NULL)
+    public function getHeader(string $header, mixed $default = NULL): mixed
     {
 
         if (isset($this->responses[$this->current_handle]['response_headers'])) {
@@ -649,12 +645,12 @@ class ClientParent
      * Returns body of the previous request, with optional default value if not existing.
      *
      * @param bool $json_decode (Decode JSON contents to an array)
-     * @param mixed $default
+     * @param mixed|null $default
      *
      * @return mixed
      */
 
-    public function getBody(bool $json_decode = false, $default = NULL)
+    public function getBody(bool $json_decode = false, mixed $default = NULL): mixed
     {
 
         if (isset($this->responses[$this->current_handle]['body'])) {
@@ -742,14 +738,14 @@ class ClientParent
     /**
      * Returns array of information about the previous request, a single option constant, or null if not existing.
      *
-     * @param mixed $opt (Optional option constant)
+     * @param mixed|null $opt (Optional option constant)
      *
      * See: https://www.php.net/manual/en/function.curl-getinfo.php#refsect1-function.curl-getinfo-parameters
      *
      * @return mixed
      */
 
-    public function getInfo($opt = NULL)
+    public function getInfo(mixed $opt = NULL): mixed
     {
 
         if (isset($this->handles[$this->current_handle])) {

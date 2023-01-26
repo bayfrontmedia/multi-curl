@@ -1,12 +1,5 @@
 <?php
 
-/**
- * @package multi-curl
- * @link https://github.com/bayfrontmedia/multi-curl
- * @author John Robinson <john@bayfrontmedia.com>
- * @copyright 2020 Bayfront Media
- */
-
 namespace Bayfront\MultiCurl;
 
 use Bayfront\MimeTypes\MimeType;
@@ -84,7 +77,7 @@ class Client extends ClientParent
 
     }
 
-    protected $has_closed = false;
+    protected bool $has_closed = false;
 
     /**
      * Reset all settings and close the cURL handle

@@ -12,11 +12,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `Fixed` for any bug fixes.
 - `Security` in case of vulnerabilities
 
+## [2.0.0] - 2023.01.26
+
+### Added
+
+- Added support for PHP 8.
+
 ## [1.1.4] - 2021.03.19
 
 ### Fixed
 
-- Fixed bug in `get` method not encoding URL's properly.
+- Fixed bug in `get` method not encoding URLs properly.
 
 ## [1.1.3] - 2020.11.27
 

@@ -1,18 +1,16 @@
 <?php
 
-/**
- * @package multi-curl
- * @link https://github.com/bayfrontmedia/multi-curl
- * @author John Robinson <john@bayfrontmedia.com>
- * @copyright 2020 Bayfront Media
- */
-
 namespace Bayfront\MultiCurl;
 
 class Async extends ClientParent
 {
 
-    protected $mh;
+    /*
+     * PHP does not support type declarations for "resource"
+     * See: https://www.php.net/manual/en/language.types.declarations.php
+     */
+
+    protected mixed $mh;
 
     /**
      * Constructor
@@ -36,7 +34,7 @@ class Async extends ClientParent
         $this->close();
     }
 
-    protected $has_closed = false;
+    protected bool $has_closed = false;
 
     /**
      * Reset all settings and close the cURL handles
