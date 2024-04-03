@@ -35,8 +35,6 @@ composer require bayfrontmedia/multi-curl
 
 ### Single HTTP request
 
-**NOTE:** A `Bayfront\MultiCurl\ClientException` will be thrown from the constructor if the cURL PHP extension is not loaded.
-
 ```
 use Bayfront\MultiCurl\Client;
 
@@ -60,8 +58,6 @@ The cURL handle will be created automatically and be ready to use.
 ### Asynchronous HTTP requests
 
 Multiple HTTP requests can be made simultaneously instead of one after the other, thereby limiting the completion time to the duration of the single slowest request instead of the sum of all requests combined.
-
-**NOTE:** A `Bayfront\MultiCurl\ClientException` will be thrown from the constructor if the cURL PHP extension is not loaded.
 
 ```
 use Bayfront\MultiCurl\Async;
