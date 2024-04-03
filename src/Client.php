@@ -14,7 +14,6 @@ class Client extends ClientParent
      *
      * @param string $base_url
      *
-     * @throws ClientException
      */
 
     public function __construct(string $base_url = '')
