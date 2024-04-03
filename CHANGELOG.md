@@ -12,6 +12,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `Fixed` for any bug fixes.
 - `Security` in case of vulnerabilities
 
+## [2.1.0] - 2024.04.03
+
+### Removed
+
+- Removed `ClientException` being thrown in class constructors if the cURL PHP extension is not loaded.
+
 ## [2.0.0] - 2023.01.26
 
 ### Added

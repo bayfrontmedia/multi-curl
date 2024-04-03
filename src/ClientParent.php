@@ -7,7 +7,7 @@ use Bayfront\ArrayHelpers\Arr;
 class ClientParent
 {
 
-    protected const MULTI_CURL_VERSION = '2.0.0';
+    protected const MULTI_CURL_VERSION = '2.1.0';
 
     protected string $base_url;
 
@@ -15,20 +15,11 @@ class ClientParent
      * Constructor
      *
      * @param string $base_url
-     *
-     * @throws ClientException
      */
 
     public function __construct(string $base_url = '')
     {
-
-        if (!extension_loaded('curl')) {
-
-            throw new ClientException('Required cURL extension does not exist');
-        }
-
         $this->base_url = $base_url;
-
     }
 
     const METHOD_CONNECT = 'CONNECT';
