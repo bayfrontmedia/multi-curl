@@ -7,9 +7,9 @@ use Bayfront\ArrayHelpers\Arr;
 class ClientParent
 {
 
-    protected const MULTI_CURL_VERSION = '2.1.0';
+    private const MULTI_CURL_VERSION = '2.2.0';
 
-    protected string $base_url;
+    private string $base_url;
 
     /**
      * Constructor
@@ -21,15 +21,15 @@ class ClientParent
         $this->base_url = $base_url;
     }
 
-    const METHOD_CONNECT = 'CONNECT';
-    const METHOD_DELETE = 'DELETE';
-    const METHOD_GET = 'GET';
-    const METHOD_HEAD = 'HEAD';
-    const METHOD_OPTIONS = 'OPTIONS';
-    const METHOD_PATCH = 'PATCH';
-    const METHOD_POST = 'POST';
-    const METHOD_PUT = 'PUT';
-    const METHOD_TRACE = 'TRACE';
+    private const METHOD_CONNECT = 'CONNECT';
+    private const METHOD_DELETE = 'DELETE';
+    private const METHOD_GET = 'GET';
+    private const METHOD_HEAD = 'HEAD';
+    private const METHOD_OPTIONS = 'OPTIONS';
+    private const METHOD_PATCH = 'PATCH';
+    private const METHOD_POST = 'POST';
+    private const METHOD_PUT = 'PUT';
+    private const METHOD_TRACE = 'TRACE';
 
     /*
      * PHP does not support type declarations for "resource"
@@ -73,7 +73,7 @@ class ClientParent
      * @param $handle
      * @return void
      */
-    protected function _curlSetOpt(string $id, $handle): void
+    protected function curlSetOpt(string $id, $handle): void
     {
 
         if (isset($this->requests[$id]['options'])) {
@@ -104,7 +104,7 @@ class ClientParent
      * @param $response
      * @return void
      */
-    protected function _curlProcessResponse(string $id, $handle, $response): void
+    protected function curlProcessResponse(string $id, $handle, $response): void
     {
 
         // Get headers
@@ -141,7 +141,7 @@ class ClientParent
      * @param string $id
      * @param $handle
      */
-    protected function _curlSetResponseInfo(string $id, $handle): void
+    protected function curlSetResponseInfo(string $id, $handle): void
     {
 
         $this->responses[$id]['error_number'] = curl_errno($handle);
@@ -188,7 +188,7 @@ class ClientParent
      *
      * @return void
      */
-    protected function _setDefaultOptions(): void
+    protected function setDefaultOptions(): void
     {
 
         $this->setOptions([
@@ -263,7 +263,7 @@ class ClientParent
      *
      * @return string
      */
-    protected function _getRequestUrl(string $url): string
+    protected function getRequestUrl(string $url): string
     {
 
         if ($this->base_url == '') {
@@ -286,10 +286,10 @@ class ClientParent
      * @param bool $json_encode
      * @return self
      */
-    protected function _createRequest(string $request_method, string $url, array $data, bool $json_encode): self
+    private function createRequest(string $request_method, string $url, array $data, bool $json_encode): self
     {
 
-        $url = $this->_getRequestUrl($url);
+        $url = $this->getRequestUrl($url);
 
         if (!empty($data)) {
 
@@ -407,7 +407,7 @@ class ClientParent
     public function get(string $url, array $data = []): self
     {
 
-        $url = $this->_getRequestUrl($url);
+        $url = $this->getRequestUrl($url);
 
         if (!empty($data)) {
 
@@ -441,7 +441,7 @@ class ClientParent
      */
     public function connect(string $url, array $data = [], bool $json_encode = false): self
     {
-        return $this->_createRequest(self::METHOD_CONNECT, $url, $data, $json_encode);
+        return $this->createRequest(self::METHOD_CONNECT, $url, $data, $json_encode);
     }
 
     /**
@@ -455,7 +455,7 @@ class ClientParent
      */
     public function delete(string $url, array $data = [], bool $json_encode = false): self
     {
-        return $this->_createRequest(self::METHOD_DELETE, $url, $data, $json_encode);
+        return $this->createRequest(self::METHOD_DELETE, $url, $data, $json_encode);
     }
 
     /**
@@ -469,7 +469,7 @@ class ClientParent
      */
     public function head(string $url, array $data = [], bool $json_encode = false): self
     {
-        return $this->_createRequest(self::METHOD_HEAD, $url, $data, $json_encode);
+        return $this->createRequest(self::METHOD_HEAD, $url, $data, $json_encode);
     }
 
     /**
@@ -483,7 +483,7 @@ class ClientParent
      */
     public function options(string $url, array $data = [], bool $json_encode = false): self
     {
-        return $this->_createRequest(self::METHOD_OPTIONS, $url, $data, $json_encode);
+        return $this->createRequest(self::METHOD_OPTIONS, $url, $data, $json_encode);
     }
 
     /**
@@ -497,7 +497,7 @@ class ClientParent
      */
     public function patch(string $url, array $data = [], bool $json_encode = false): self
     {
-        return $this->_createRequest(self::METHOD_PATCH, $url, $data, $json_encode);
+        return $this->createRequest(self::METHOD_PATCH, $url, $data, $json_encode);
     }
 
     /**
@@ -511,7 +511,7 @@ class ClientParent
      */
     public function post(string $url, array $data = [], bool $json_encode = false): self
     {
-        return $this->_createRequest(self::METHOD_POST, $url, $data, $json_encode);
+        return $this->createRequest(self::METHOD_POST, $url, $data, $json_encode);
     }
 
     /**
@@ -525,7 +525,7 @@ class ClientParent
      */
     public function put(string $url, array $data = [], bool $json_encode = false): self
     {
-        return $this->_createRequest(self::METHOD_PUT, $url, $data, $json_encode);
+        return $this->createRequest(self::METHOD_PUT, $url, $data, $json_encode);
     }
 
     /**
@@ -539,7 +539,7 @@ class ClientParent
      */
     public function trace(string $url, array $data = [], bool $json_encode = false): self
     {
-        return $this->_createRequest(self::METHOD_TRACE, $url, $data, $json_encode);
+        return $this->createRequest(self::METHOD_TRACE, $url, $data, $json_encode);
     }
 
     /*

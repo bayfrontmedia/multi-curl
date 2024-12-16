@@ -7,7 +7,7 @@ use Bayfront\MimeTypes\MimeType;
 class Client extends ClientParent
 {
 
-    const DEFAULT_HANDLE = 'default';
+    private const DEFAULT_HANDLE = 'default';
 
     /**
      * Constructor
@@ -29,7 +29,7 @@ class Client extends ClientParent
 
         $this->current_handle = self::DEFAULT_HANDLE;
 
-        $this->_setDefaultOptions();
+        $this->setDefaultOptions();
 
     }
 
@@ -41,16 +41,16 @@ class Client extends ClientParent
     /**
      * Execute the given cURL session
      *
-     * @return self
+     * @return void
      */
-    protected function _execute(): self
+    private function execute(): void
     {
 
         $id = self::DEFAULT_HANDLE;
 
         $handle = $this->handles[self::DEFAULT_HANDLE];
 
-        $this->_curlSetOpt($id, $handle);
+        $this->curlSetOpt($id, $handle);
 
         // cURL response
 
@@ -58,7 +58,7 @@ class Client extends ClientParent
 
             $response = curl_exec($handle);
 
-            $this->_curlProcessResponse($id, $handle, $response);
+            $this->curlProcessResponse($id, $handle, $response);
 
         } else {
 
@@ -66,15 +66,13 @@ class Client extends ClientParent
 
         }
 
-        $this->_curlSetResponseInfo($id, $handle);
+        $this->curlSetResponseInfo($id, $handle);
 
         $this->reset(); // Reset all request settings
 
-        return $this;
-
     }
 
-    protected bool $has_closed = false;
+    private bool $has_closed = false;
 
     /**
      * Reset all settings and close the cURL handle
@@ -121,63 +119,63 @@ class Client extends ClientParent
     public function get(string $url, array $data = []): ClientParent
     {
         parent::get($url, $data);
-        $this->_execute();
+        $this->execute();
         return $this;
     }
 
     public function connect(string $url, array $data = [], bool $json_encode = false): ClientParent
     {
         parent::connect($url, $data, $json_encode);
-        $this->_execute();
+        $this->execute();
         return $this;
     }
 
     public function delete(string $url, array $data = [], bool $json_encode = false): ClientParent
     {
         parent::delete($url, $data, $json_encode);
-        $this->_execute();
+        $this->execute();
         return $this;
     }
 
     public function head(string $url, array $data = [], bool $json_encode = false): ClientParent
     {
         parent::head($url, $data, $json_encode);
-        $this->_execute();
+        $this->execute();
         return $this;
     }
 
     public function options(string $url, array $data = [], bool $json_encode = false): ClientParent
     {
         parent::options($url, $data, $json_encode);
-        $this->_execute();
+        $this->execute();
         return $this;
     }
 
     public function patch(string $url, array $data = [], bool $json_encode = false): ClientParent
     {
         parent::patch($url, $data, $json_encode);
-        $this->_execute();
+        $this->execute();
         return $this;
     }
 
     public function post(string $url, array $data = [], bool $json_encode = false): ClientParent
     {
         parent::post($url, $data, $json_encode);
-        $this->_execute();
+        $this->execute();
         return $this;
     }
 
     public function put(string $url, array $data = [], bool $json_encode = false): ClientParent
     {
         parent::put($url, $data, $json_encode);
-        $this->_execute();
+        $this->execute();
         return $this;
     }
 
     public function trace(string $url, array $data = [], bool $json_encode = false): ClientParent
     {
         parent::trace($url, $data, $json_encode);
-        $this->_execute();
+        $this->execute();
         return $this;
     }
 
@@ -185,14 +183,15 @@ class Client extends ClientParent
      * Initiates file download in the browser
      *
      * @param string $url
+     * @param int $memory_limit (In MB)
      * @return void
      */
-    public function download(string $url): void
+    public function download(string $url, int $memory_limit = 128): void
     {
 
-        ini_set('memory_limit', '128M');
+        ini_set('memory_limit', $memory_limit . 'M');
 
-        $url = $this->_getRequestUrl($url);
+        $url = $this->getRequestUrl($url);
 
         $this->setOptions([
             CURLOPT_URL => $url
@@ -200,7 +199,7 @@ class Client extends ClientParent
 
         $this->requests[$this->current_handle]['url'] = $url;
 
-        $this->_execute();
+        $this->execute();
 
         header('Content-Disposition: attachment; filename=' . basename($url));
         header('Content-Type: ' . MimeType::fromFile(basename($url)));

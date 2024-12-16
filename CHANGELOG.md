@@ -12,6 +12,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `Fixed` for any bug fixes.
 - `Security` in case of vulnerabilities
 
+## [2.2.0] - 2024.12.16
+
+### Added
+
+- Added memory limit parameter for `download` method.
+
+### Changed
+
+- General code cleanup.
+
 ## [2.1.0] - 2024.04.03
 
 ### Removed

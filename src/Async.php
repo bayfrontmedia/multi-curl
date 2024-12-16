@@ -2,15 +2,12 @@
 
 namespace Bayfront\MultiCurl;
 
+use CurlMultiHandle;
+
 class Async extends ClientParent
 {
 
-    /*
-     * PHP does not support type declarations for "resource"
-     * See: https://www.php.net/manual/en/language.types.declarations.php
-     */
-
-    protected mixed $mh;
+    private CurlMultiHandle $mh;
 
     /**
      * Constructor
@@ -28,7 +25,7 @@ class Async extends ClientParent
         $this->close();
     }
 
-    protected bool $has_closed = false;
+    private bool $has_closed = false;
 
     /**
      * Reset all settings and close the cURL handles
@@ -81,7 +78,7 @@ class Async extends ClientParent
 
             $this->handles[$id] = curl_init();
             $this->current_handle = $id;
-            $this->_setDefaultOptions();
+            $this->setDefaultOptions();
 
         }
 
@@ -124,7 +121,7 @@ class Async extends ClientParent
 
         foreach ($this->handles as $id => $handle) {
 
-            $this->_curlSetOpt($id, $handle);
+            $this->curlSetOpt($id, $handle);
             curl_multi_add_handle($this->mh, $handle);
 
         }
@@ -144,7 +141,7 @@ class Async extends ClientParent
 
                 $response = curl_multi_getcontent($handle);
 
-                $this->_curlProcessResponse($id, $handle, $response);
+                $this->curlProcessResponse($id, $handle, $response);
 
             } else {
 
@@ -152,7 +149,7 @@ class Async extends ClientParent
 
             }
 
-            $this->_curlSetResponseInfo($id, $handle);
+            $this->curlSetResponseInfo($id, $handle);
 
             curl_multi_remove_handle($this->mh, $handle);
 
