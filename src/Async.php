@@ -16,16 +16,11 @@ class Async extends ClientParent
      * Constructor
      *
      * @param string $base_url
-     *
      */
-
     public function __construct(string $base_url = '')
     {
-
         parent::__construct($base_url);
-
         $this->mh = curl_multi_init();
-
     }
 
     public function __destruct()
@@ -42,7 +37,6 @@ class Async extends ClientParent
      *
      * @return self
      */
-
     public function close(): self
     {
 
@@ -78,19 +72,15 @@ class Async extends ClientParent
      * cURL handles must be created before they can be used.
      *
      * @param array $ids
-     *
      * @return self
      */
-
     public function create(array $ids): self
     {
 
         foreach ($ids as $id) {
 
             $this->handles[$id] = curl_init();
-
             $this->current_handle = $id;
-
             $this->_setDefaultOptions();
 
         }
@@ -106,19 +96,14 @@ class Async extends ClientParent
      * it can be used by specifying the ID of the handle you wish to use.
      *
      * @param string $id
-     *
      * @return self
-     *
      * @throws ClientException
      */
-
     public function use(string $id): self
     {
 
         if (!isset($this->handles[$id])) {
-
             throw new ClientException('Unable to use client: id does not exist');
-
         }
 
         $this->current_handle = $id;
@@ -134,14 +119,12 @@ class Async extends ClientParent
      *
      * @return self
      */
-
     public function execute(): self
     {
 
         foreach ($this->handles as $id => $handle) {
 
             $this->_curlSetOpt($id, $handle);
-
             curl_multi_add_handle($this->mh, $handle);
 
         }

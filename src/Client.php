@@ -15,7 +15,6 @@ class Client extends ClientParent
      * @param string $base_url
      *
      */
-
     public function __construct(string $base_url = '')
     {
 
@@ -44,7 +43,6 @@ class Client extends ClientParent
      *
      * @return self
      */
-
     protected function _execute(): self
     {
 
@@ -85,7 +83,6 @@ class Client extends ClientParent
      *
      * @return self
      */
-
     public function close(): self
     {
 
@@ -188,10 +185,8 @@ class Client extends ClientParent
      * Initiates file download in the browser
      *
      * @param string $url
-     *
      * @return void
      */
-
     public function download(string $url): void
     {
 
@@ -208,9 +203,7 @@ class Client extends ClientParent
         $this->_execute();
 
         header('Content-Disposition: attachment; filename=' . basename($url));
-
         header('Content-Type: ' . MimeType::fromFile(basename($url)));
-
         header('Content-Length: ' . $this->getHeader('Content-Length'));
 
         echo $this->getBody();

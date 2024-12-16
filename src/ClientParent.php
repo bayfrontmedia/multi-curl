@@ -16,7 +16,6 @@ class ClientParent
      *
      * @param string $base_url
      */
-
     public function __construct(string $base_url = '')
     {
         $this->base_url = $base_url;
@@ -72,17 +71,13 @@ class ClientParent
      *
      * @param string $id
      * @param $handle
-     *
      * @return void
      */
-
     protected function _curlSetOpt(string $id, $handle): void
     {
 
         if (isset($this->requests[$id]['options'])) {
-
             curl_setopt_array($handle, $this->requests[$id]['options']);
-
         }
 
         // Headers
@@ -107,10 +102,8 @@ class ClientParent
      * @param string $id
      * @param $handle
      * @param $response
-     *
      * @return void
      */
-
     protected function _curlProcessResponse(string $id, $handle, $response): void
     {
 
@@ -148,16 +141,12 @@ class ClientParent
      * @param string $id
      * @param $handle
      */
-
     protected function _curlSetResponseInfo(string $id, $handle): void
     {
 
         $this->responses[$id]['error_number'] = curl_errno($handle);
-
         $this->responses[$id]['error'] = !($this->responses[$id]['error_number'] === 0);
-
         $this->responses[$id]['error_message'] = curl_error($handle);
-
         $this->responses[$id]['http_status_code'] = intval(curl_getinfo($handle, CURLINFO_HTTP_CODE));
 
     }
@@ -166,17 +155,12 @@ class ClientParent
      * Returns the cURL handle.
      *
      * @returns resource
-     *
      * @throws ClientException
      */
-
     public function getHandle()
     {
-
         if (!isset($this->handles[$this->current_handle])) {
-
             throw new ClientException('Unable to get handle: handle does not exist');
-
         }
 
         return $this->handles[$this->current_handle];
@@ -187,11 +171,9 @@ class ClientParent
      *
      * @return self
      */
-
     public function reset(): self
     {
         $this->requests = [];
-
         return $this;
     }
 
@@ -206,7 +188,6 @@ class ClientParent
      *
      * @return void
      */
-
     protected function _setDefaultOptions(): void
     {
 
@@ -226,15 +207,12 @@ class ClientParent
      * Sets an array of options for the cURL session.
      *
      * @param array $options
-     *
      * @return self
      */
-
     public function setOptions(array $options): self
     {
 
         foreach ($options as $k => $v) {
-
             $this->requests[$this->current_handle]['options'][$k] = $v;
         }
 
@@ -246,15 +224,12 @@ class ClientParent
      * Sets an array of headers for the cURL session.
      *
      * @param array $headers
-     *
      * @return self
      */
-
     public function setHeaders(array $headers): self
     {
 
         foreach ($headers as $k => $v) {
-
             $this->requests[$this->current_handle]['headers'][$k] = $v;
         }
 
@@ -266,10 +241,8 @@ class ClientParent
      * Sets token authorization header for the cURL session using a given token.
      *
      * @param string $token
-     *
      * @return self
      */
-
     public function setToken(string $token): self
     {
         return $this->setHeaders([
@@ -290,7 +263,6 @@ class ClientParent
      *
      * @return string
      */
-
     protected function _getRequestUrl(string $url): string
     {
 
@@ -312,10 +284,8 @@ class ClientParent
      * @param string $url
      * @param array $data
      * @param bool $json_encode
-     *
      * @return self
      */
-
     protected function _createRequest(string $request_method, string $url, array $data, bool $json_encode): self
     {
 
@@ -432,10 +402,8 @@ class ClientParent
      *
      * @param string $url
      * @param array $data
-     *
      * @return self
      */
-
     public function get(string $url, array $data = []): self
     {
 
@@ -469,10 +437,8 @@ class ClientParent
      * @param array $data
      * @param bool $json_encode (json_encode the $data array and set the Content-Type header as application/json, if
      *     not already defined)
-     *
      * @return self
      */
-
     public function connect(string $url, array $data = [], bool $json_encode = false): self
     {
         return $this->_createRequest(self::METHOD_CONNECT, $url, $data, $json_encode);
@@ -485,10 +451,8 @@ class ClientParent
      * @param array $data
      * @param bool $json_encode (json_encode the $data array and set the Content-Type header as application/json, if
      *     not already defined)
-     *
      * @return self
      */
-
     public function delete(string $url, array $data = [], bool $json_encode = false): self
     {
         return $this->_createRequest(self::METHOD_DELETE, $url, $data, $json_encode);
@@ -501,10 +465,8 @@ class ClientParent
      * @param array $data
      * @param bool $json_encode (json_encode the $data array and set the Content-Type header as application/json, if
      *     not already defined)
-     *
      * @return self
      */
-
     public function head(string $url, array $data = [], bool $json_encode = false): self
     {
         return $this->_createRequest(self::METHOD_HEAD, $url, $data, $json_encode);
@@ -517,10 +479,8 @@ class ClientParent
      * @param array $data
      * @param bool $json_encode (json_encode the $data array and set the Content-Type header as application/json, if
      *     not already defined)
-     *
      * @return self
      */
-
     public function options(string $url, array $data = [], bool $json_encode = false): self
     {
         return $this->_createRequest(self::METHOD_OPTIONS, $url, $data, $json_encode);
@@ -533,10 +493,8 @@ class ClientParent
      * @param array $data
      * @param bool $json_encode (json_encode the $data array and set the Content-Type header as application/json, if
      *     not already defined)
-     *
      * @return self
      */
-
     public function patch(string $url, array $data = [], bool $json_encode = false): self
     {
         return $this->_createRequest(self::METHOD_PATCH, $url, $data, $json_encode);
@@ -549,10 +507,8 @@ class ClientParent
      * @param array $data
      * @param bool $json_encode (json_encode the $data array and set the Content-Type header as application/json, if
      *     not already defined)
-     *
      * @return self
      */
-
     public function post(string $url, array $data = [], bool $json_encode = false): self
     {
         return $this->_createRequest(self::METHOD_POST, $url, $data, $json_encode);
@@ -565,10 +521,8 @@ class ClientParent
      * @param array $data
      * @param bool $json_encode (json_encode the $data array and set the Content-Type header as application/json, if
      *     not already defined)
-     *
      * @return self
      */
-
     public function put(string $url, array $data = [], bool $json_encode = false): self
     {
         return $this->_createRequest(self::METHOD_PUT, $url, $data, $json_encode);
@@ -581,10 +535,8 @@ class ClientParent
      * @param array $data
      * @param bool $json_encode (json_encode the $data array and set the Content-Type header as application/json, if
      *     not already defined)
-     *
      * @return self
      */
-
     public function trace(string $url, array $data = [], bool $json_encode = false): self
     {
         return $this->_createRequest(self::METHOD_TRACE, $url, $data, $json_encode);
@@ -601,7 +553,6 @@ class ClientParent
      *
      * @return array
      */
-
     public function getHeaders(): array
     {
         if (isset($this->responses[$this->current_handle]['response_headers'])) {
@@ -617,10 +568,8 @@ class ClientParent
      *
      * @param string $header
      * @param mixed|null $default
-     *
      * @return mixed
      */
-
     public function getHeader(string $header, mixed $default = NULL): mixed
     {
 
@@ -637,10 +586,8 @@ class ClientParent
      *
      * @param bool $json_decode (Decode JSON contents to an array)
      * @param mixed|null $default
-     *
      * @return mixed
      */
-
     public function getBody(bool $json_decode = false, mixed $default = NULL): mixed
     {
 
@@ -663,7 +610,6 @@ class ClientParent
      *
      * @return int
      */
-
     public function getErrorNumber(): int
     {
 
@@ -680,7 +626,6 @@ class ClientParent
      *
      * @return bool
      */
-
     public function isError(): bool
     {
 
@@ -697,7 +642,6 @@ class ClientParent
      *
      * @return string
      */
-
     public function getErrorMessage(): string
     {
 
@@ -714,7 +658,6 @@ class ClientParent
      *
      * @return int
      */
-
     public function getStatusCode(): int
     {
 
@@ -735,16 +678,13 @@ class ClientParent
      *
      * @return mixed
      */
-
     public function getInfo(mixed $opt = NULL): mixed
     {
 
         if (isset($this->handles[$this->current_handle])) {
 
             if (NULL === $opt) {
-
                 return curl_getinfo($this->handles[$this->current_handle]); // Return entire array
-
             }
 
             return curl_getinfo($this->handles[$this->current_handle], $opt); // Return single value
@@ -760,14 +700,10 @@ class ClientParent
      *
      * @return bool
      */
-
     public function isInformational(): bool
     {
-
         $status = $this->getStatusCode();
-
         return $status >= 100 && $status < 200;
-
     }
 
     /**
@@ -775,14 +711,10 @@ class ClientParent
      *
      * @return bool
      */
-
     public function isSuccessful(): bool
     {
-
         $status = $this->getStatusCode();
-
         return $status >= 200 && $status < 300;
-
     }
 
     /**
@@ -790,14 +722,10 @@ class ClientParent
      *
      * @return bool
      */
-
     public function isRedirection(): bool
     {
-
         $status = $this->getStatusCode();
-
         return $status >= 300 && $status < 400;
-
     }
 
     /**
@@ -805,14 +733,10 @@ class ClientParent
      *
      * @return bool
      */
-
     public function isClientError(): bool
     {
-
         $status = $this->getStatusCode();
-
         return $status >= 400 && $status < 500;
-
     }
 
     /**
@@ -820,14 +744,10 @@ class ClientParent
      *
      * @return bool
      */
-
     public function isServerError(): bool
     {
-
         $status = $this->getStatusCode();
-
         return $status >= 500 && $status < 600;
-
     }
 
     /**
@@ -835,7 +755,6 @@ class ClientParent
      *
      * @return bool
      */
-
     public function isOk(): bool
     {
         return 200 === $this->getStatusCode();
@@ -846,7 +765,6 @@ class ClientParent
      *
      * @return bool
      */
-
     public function isForbidden(): bool
     {
         return 403 === $this->getStatusCode();
@@ -857,7 +775,6 @@ class ClientParent
      *
      * @return bool
      */
-
     public function isNotFound(): bool
     {
         return 404 === $this->getStatusCode();
