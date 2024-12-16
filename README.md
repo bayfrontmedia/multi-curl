@@ -401,6 +401,7 @@ Initiates file download in the browser.
 **Parameters:**
 
 - `$url` (string)
+- `$memory_limit = 128` (int): Memory limit (in MB)
 
 **Returns:**
 
