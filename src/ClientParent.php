@@ -7,7 +7,7 @@ use Bayfront\ArrayHelpers\Arr;
 class ClientParent
 {
 
-    private const string MULTI_CURL_VERSION = '2.2.0';
+    private const MULTI_CURL_VERSION = '2.2.0';
 
     private string $base_url;
 
@@ -21,15 +21,15 @@ class ClientParent
         $this->base_url = $base_url;
     }
 
-    private const string METHOD_CONNECT = 'CONNECT';
-    private const string  METHOD_DELETE = 'DELETE';
-    private const string  METHOD_GET = 'GET';
-    private const string  METHOD_HEAD = 'HEAD';
-    private const string  METHOD_OPTIONS = 'OPTIONS';
-    private const string  METHOD_PATCH = 'PATCH';
-    private const string  METHOD_POST = 'POST';
-    private const string  METHOD_PUT = 'PUT';
-    private const string  METHOD_TRACE = 'TRACE';
+    private const METHOD_CONNECT = 'CONNECT';
+    private const  METHOD_DELETE = 'DELETE';
+    private const  METHOD_GET = 'GET';
+    private const  METHOD_HEAD = 'HEAD';
+    private const  METHOD_OPTIONS = 'OPTIONS';
+    private const  METHOD_PATCH = 'PATCH';
+    private const  METHOD_POST = 'POST';
+    private const  METHOD_PUT = 'PUT';
+    private const  METHOD_TRACE = 'TRACE';
 
     /*
      * PHP does not support type declarations for "resource"
