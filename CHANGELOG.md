@@ -12,6 +12,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `Fixed` for any bug fixes.
 - `Security` in case of vulnerabilities
 
+## [2.3.0] - Upcoming
+
+### Added
+
+- Added `ApiModel`.
+ 
 ## [2.2.1] - 2024.12.23
 
 ### Added
