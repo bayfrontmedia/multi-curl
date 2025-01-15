@@ -8,24 +8,27 @@ Example:
 class MyApiModel {
 
     use InteractsWithApi;
+    
+    public function __construct() 
+    {
+        $this
+            ->setBaseUrl('https://api.example.com.com/v1')
+            ->setHeaders($this::METHOD_POST, [
+                'Content-Type' => 'application/json',
+                'Accept' => 'application/json'
+            ])->setHeaders($this::METHOD_GET, [
+                'Accept' => 'application/json'
+            ])->setHeaders($this::METHOD_PATCH, [
+                'Content-Type' => 'application/json',
+                'Accept' => 'application/json'
+            ])->setHeaders($this::METHOD_DELETE, [
+                'Accept' => 'application/json'
+            ]);    
+    }
 
 }
 
 $myApiModel = new MyApiModel();
-
-$myApiModel
-    ->setBaseUrl('https://api.example.com/v1')
-    ->setHeaders($myApiModel::METHOD_POST, [
-        'Content-Type' => 'application/json',
-        'Accept' => 'application/json'
-    ])->setHeaders($myApiModel::METHOD_GET, [
-        'Accept' => 'application/json'
-    ])->setHeaders($myApiModel::METHOD_PATCH, [
-        'Content-Type' => 'application/json',
-        'Accept' => 'application/json'
-    ])->setHeaders($myApiModel::METHOD_DELETE, [
-        'Accept' => 'application/json'
-    ]);
 
 $myApiModel->setAuthenticationHeaders([
     'X-Api-Key' => 'API_KEY'
@@ -156,7 +159,7 @@ Get headers for every request.
 
 **Parameters:**
 
-- `$method` (string)
+- `$method` (string): Valid `METHOD_*` constant
 
 **Returns:**
 
@@ -208,7 +211,7 @@ Get API response.
 
 **Parameters:**
 
-- `$id` (string)
+- `$id` (string): Unique request ID
 
 **Returns:**
 

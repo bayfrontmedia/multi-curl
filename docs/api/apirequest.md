@@ -13,12 +13,12 @@ Its constructor requires:
 
 Public methods include:
 
-- getId
-- getMethod
-- getPath
-- getData
-- getHeaders
-- requiresAuthentication
+- [getId](#getid)
+- [getMethod](#getmethod)
+- [getPath](#getpath)
+- [getData](#getdata)
+- [getHeaders](#getheaders)
+- [requiresAuthentication](#requiresauthentication)
 
 ## getId
 

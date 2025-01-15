@@ -205,7 +205,7 @@ trait InteractsWithApi
     /**
      * Get API response.
      *
-     * @param string $id
+     * @param string $id : Unique request ID
      * @return ApiResponse
      * @throws ApiException
      */
