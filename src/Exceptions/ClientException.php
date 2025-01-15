@@ -1,6 +1,6 @@
 <?php
 
-namespace Bayfront\MultiCurl;
+namespace Bayfront\MultiCurl\Exceptions;
 
 use Exception;
 

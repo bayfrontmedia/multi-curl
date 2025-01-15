@@ -1,18 +1,28 @@
 <?php
 
-namespace Bayfront\MultiCurl\ApiModel;
+namespace Bayfront\MultiCurl\Api;
 
-class ApiModelRequest
+class ApiRequest
 {
 
+    private string $id;
     private string $method;
     private string $path;
     private array $data;
     private array $headers;
     private bool $requires_authentication;
 
-    public function __construct(string $method, string $path, array $data = [], array $headers = [], bool $requires_authentication = false)
+    /**
+     * @param string $id
+     * @param string $method
+     * @param string $path
+     * @param array $data
+     * @param array $headers
+     * @param bool $requires_authentication
+     */
+    public function __construct(string $id, string $method, string $path, array $data = [], array $headers = [], bool $requires_authentication = false)
     {
+        $this->id = $id;
         $this->method = strtoupper($method);
         $this->path = ltrim($path, '/');
         $this->data = $data;
@@ -21,7 +31,17 @@ class ApiModelRequest
     }
 
     /**
-     * Get request method.
+     * Get unique request ID.
+     *
+     * @return string
+     */
+    public function getId(): string
+    {
+        return $this->id;
+    }
+
+    /**
+     * Get HTTP request method.
      *
      * @return string
      */
