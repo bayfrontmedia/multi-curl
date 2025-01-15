@@ -2,6 +2,7 @@
 
 namespace Bayfront\MultiCurl;
 
+use Bayfront\MultiCurl\Exceptions\ClientException;
 use CurlMultiHandle;
 
 class Async extends ClientParent
@@ -28,9 +29,9 @@ class Async extends ClientParent
     private bool $has_closed = false;
 
     /**
-     * Reset all settings and close the cURL handles
+     * Reset all settings and close the cURL handles.
      *
-     * NOTE: This method is called in the class destructor
+     * NOTE: This method is called in the class destructor.
      *
      * @return self
      */
@@ -64,7 +65,7 @@ class Async extends ClientParent
     }
 
     /**
-     * Create cURL handles with identifiers
+     * Create cURL handles with identifiers.
      *
      * cURL handles must be created before they can be used.
      *
@@ -87,7 +88,7 @@ class Async extends ClientParent
     }
 
     /**
-     * Sets current cURL handle
+     * Sets current cURL handle.
      *
      * Once the cURL handle has been created using create(),
      * it can be used by specifying the ID of the handle you wish to use.
@@ -110,7 +111,7 @@ class Async extends ClientParent
     }
 
     /**
-     * Execute the given cURL session
+     * Execute the given cURL session.
      *
      * The response methods will only return results after the execute() method has been called.
      *

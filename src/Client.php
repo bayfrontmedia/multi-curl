@@ -39,7 +39,7 @@ class Client extends ClientParent
     }
 
     /**
-     * Execute the given cURL session
+     * Execute the given cURL session.
      *
      * @return void
      */
@@ -75,9 +75,9 @@ class Client extends ClientParent
     private bool $has_closed = false;
 
     /**
-     * Reset all settings and close the cURL handle
+     * Reset all settings and close the cURL handle.
      *
-     * NOTE: This method is called in the class destructor
+     * NOTE: This method is called in the class destructor.
      *
      * @return self
      */
@@ -180,7 +180,7 @@ class Client extends ClientParent
     }
 
     /**
-     * Initiates file download in the browser
+     * Initiates file download in the browser.
      *
      * @param string $url
      * @param int $memory_limit (In MB)
