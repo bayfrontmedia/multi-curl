@@ -131,23 +131,23 @@ trait InteractsWithApi
         $this->async->setHeaders($this->getHeaders($request_method));
 
         if ($request_method === self::METHOD_CONNECT) {
-            $this->async->connect($apiRequest->getPath(), $apiRequest->getData());
+            $this->async->connect($apiRequest->getPath(), $apiRequest->getData(), true);
         } else if ($request_method === self::METHOD_DELETE) {
-            $this->async->delete($apiRequest->getPath(), $apiRequest->getData());
+            $this->async->delete($apiRequest->getPath(), $apiRequest->getData(), true);
         } else if ($request_method === self::METHOD_GET) {
             $this->async->get($apiRequest->getPath(), $apiRequest->getData());
         } else if ($request_method === self::METHOD_HEAD) {
-            $this->async->head($apiRequest->getPath(), $apiRequest->getData());
+            $this->async->head($apiRequest->getPath(), $apiRequest->getData(), true);
         } else if ($request_method === self::METHOD_OPTIONS) {
-            $this->async->options($apiRequest->getPath(), $apiRequest->getData());
+            $this->async->options($apiRequest->getPath(), $apiRequest->getData(), true);
         } else if ($request_method === self::METHOD_PATCH) {
-            $this->async->patch($apiRequest->getPath(), $apiRequest->getData());
+            $this->async->patch($apiRequest->getPath(), $apiRequest->getData(), true);
         } else if ($request_method === self::METHOD_POST) {
-            $this->async->post($apiRequest->getPath(), $apiRequest->getData());
+            $this->async->post($apiRequest->getPath(), $apiRequest->getData(), true);
         } else if ($request_method === self::METHOD_PUT) {
-            $this->async->put($apiRequest->getPath(), $apiRequest->getData());
+            $this->async->put($apiRequest->getPath(), $apiRequest->getData(), true);
         } else if ($request_method === self::METHOD_TRACE) {
-            $this->async->trace($apiRequest->getPath(), $apiRequest->getData());
+            $this->async->trace($apiRequest->getPath(), $apiRequest->getData(), true);
         } else {
             throw new ApiException('Unable to add request(' . $apiRequest->getId() . '): Invalid request method (' . $request_method . ')');
         }
@@ -216,7 +216,7 @@ trait InteractsWithApi
             throw new ApiException('Unable to get response (' . $id . '): Invalid ID');
         }
 
-        return new ApiResponse(Arr::get($this->responses[$id], 'status', 0), Arr::get($this->responses[$id], 'headers', []), Arr::get($this->responses[$id], 'body', []));
+        return new ApiResponse(Arr::get($this->responses[$id], 'status', 0), Arr::get($this->responses[$id], 'headers', []), Arr::get($this->responses[$id], 'body'));
 
     }
 
