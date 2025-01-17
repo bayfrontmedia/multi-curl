@@ -10,7 +10,7 @@ use Bayfront\MultiCurl\Exceptions\ApiException;
 trait InteractsWithApi
 {
 
-    private string $base_url = '';
+    private static string $base_url = '';
 
     /**
      * Set base URL.
@@ -20,7 +20,7 @@ trait InteractsWithApi
      */
     public function setBaseUrl(string $base_url): static
     {
-        $this->base_url = $base_url;
+        self::$base_url = $base_url;
         return $this;
     }
 
@@ -31,10 +31,10 @@ trait InteractsWithApi
      */
     public function getBaseUrl(): string
     {
-        return $this->base_url;
+        return self::$base_url;
     }
 
-    private array $authentication_headers = [];
+    private static array $authentication_headers = [];
 
     /**
      * Set authentication headers.
@@ -44,7 +44,7 @@ trait InteractsWithApi
      */
     public function setAuthenticationHeaders(array $headers): static
     {
-        $this->authentication_headers = array_merge($this->authentication_headers, $headers);
+        self::$authentication_headers = array_merge(self::$authentication_headers, $headers);
         return $this;
     }
 
@@ -55,7 +55,7 @@ trait InteractsWithApi
      */
     public function getAuthenticationHeaders(): array
     {
-        return $this->authentication_headers;
+        return self::$authentication_headers;
     }
 
     public const METHOD_CONNECT = 'CONNECT';
@@ -68,7 +68,7 @@ trait InteractsWithApi
     public const  METHOD_PUT = 'PUT';
     public const  METHOD_TRACE = 'TRACE';
 
-    private array $headers = [];
+    private static array $headers = [];
 
     /**
      * Set headers for every request.
@@ -79,7 +79,7 @@ trait InteractsWithApi
      */
     public function setHeaders(string $method, array $headers): static
     {
-        $this->headers[$method] = array_merge(Arr::get($this->headers, $method, []), $headers);
+        self::$headers[$method] = array_merge(Arr::get(self::$headers, $method, []), $headers);
         return $this;
     }
 
@@ -91,7 +91,7 @@ trait InteractsWithApi
      */
     public function getHeaders(string $method): array
     {
-        return Arr::get($this->headers, $method, []);
+        return Arr::get(self::$headers, $method, []);
     }
 
     private ?Async $async = null;
