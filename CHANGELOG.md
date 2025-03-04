@@ -12,6 +12,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `Fixed` for any bug fixes.
 - `Security` in case of vulnerabilities
 
+## [3.0.1] - 2025.03.04
+
+### Changed
+
+- Updated private methods to static in `InteractsWithApi` trait.
+
+### Fixed
+
+- Bugfix in `getBody` method returning `null`.
+- Bugfix in `addRequest` method not JSON-encoding data.
+
 ## [3.0.0] - 2025.01.15
 
 ### Added

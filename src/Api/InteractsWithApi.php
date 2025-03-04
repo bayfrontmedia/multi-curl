@@ -10,7 +10,7 @@ use Bayfront\MultiCurl\Exceptions\ApiException;
 trait InteractsWithApi
 {
 
-    private string $base_url = '';
+    private static string $base_url = '';
 
     /**
      * Set base URL.
@@ -20,7 +20,7 @@ trait InteractsWithApi
      */
     public function setBaseUrl(string $base_url): static
     {
-        $this->base_url = $base_url;
+        self::$base_url = $base_url;
         return $this;
     }
 
@@ -31,10 +31,10 @@ trait InteractsWithApi
      */
     public function getBaseUrl(): string
     {
-        return $this->base_url;
+        return self::$base_url;
     }
 
-    private array $authentication_headers = [];
+    private static array $authentication_headers = [];
 
     /**
      * Set authentication headers.
@@ -44,7 +44,7 @@ trait InteractsWithApi
      */
     public function setAuthenticationHeaders(array $headers): static
     {
-        $this->authentication_headers = array_merge($this->authentication_headers, $headers);
+        self::$authentication_headers = array_merge(self::$authentication_headers, $headers);
         return $this;
     }
 
@@ -55,7 +55,7 @@ trait InteractsWithApi
      */
     public function getAuthenticationHeaders(): array
     {
-        return $this->authentication_headers;
+        return self::$authentication_headers;
     }
 
     public const METHOD_CONNECT = 'CONNECT';
@@ -68,7 +68,7 @@ trait InteractsWithApi
     public const  METHOD_PUT = 'PUT';
     public const  METHOD_TRACE = 'TRACE';
 
-    private array $headers = [];
+    private static array $headers = [];
 
     /**
      * Set headers for every request.
@@ -79,7 +79,7 @@ trait InteractsWithApi
      */
     public function setHeaders(string $method, array $headers): static
     {
-        $this->headers[$method] = array_merge(Arr::get($this->headers, $method, []), $headers);
+        self::$headers[$method] = array_merge(Arr::get(self::$headers, $method, []), $headers);
         return $this;
     }
 
@@ -91,7 +91,7 @@ trait InteractsWithApi
      */
     public function getHeaders(string $method): array
     {
-        return Arr::get($this->headers, $method, []);
+        return Arr::get(self::$headers, $method, []);
     }
 
     private ?Async $async = null;
@@ -131,23 +131,23 @@ trait InteractsWithApi
         $this->async->setHeaders($this->getHeaders($request_method));
 
         if ($request_method === self::METHOD_CONNECT) {
-            $this->async->connect($apiRequest->getPath(), $apiRequest->getData());
+            $this->async->connect($apiRequest->getPath(), $apiRequest->getData(), true);
         } else if ($request_method === self::METHOD_DELETE) {
-            $this->async->delete($apiRequest->getPath(), $apiRequest->getData());
+            $this->async->delete($apiRequest->getPath(), $apiRequest->getData(), true);
         } else if ($request_method === self::METHOD_GET) {
             $this->async->get($apiRequest->getPath(), $apiRequest->getData());
         } else if ($request_method === self::METHOD_HEAD) {
-            $this->async->head($apiRequest->getPath(), $apiRequest->getData());
+            $this->async->head($apiRequest->getPath(), $apiRequest->getData(), true);
         } else if ($request_method === self::METHOD_OPTIONS) {
-            $this->async->options($apiRequest->getPath(), $apiRequest->getData());
+            $this->async->options($apiRequest->getPath(), $apiRequest->getData(), true);
         } else if ($request_method === self::METHOD_PATCH) {
-            $this->async->patch($apiRequest->getPath(), $apiRequest->getData());
+            $this->async->patch($apiRequest->getPath(), $apiRequest->getData(), true);
         } else if ($request_method === self::METHOD_POST) {
-            $this->async->post($apiRequest->getPath(), $apiRequest->getData());
+            $this->async->post($apiRequest->getPath(), $apiRequest->getData(), true);
         } else if ($request_method === self::METHOD_PUT) {
-            $this->async->put($apiRequest->getPath(), $apiRequest->getData());
+            $this->async->put($apiRequest->getPath(), $apiRequest->getData(), true);
         } else if ($request_method === self::METHOD_TRACE) {
-            $this->async->trace($apiRequest->getPath(), $apiRequest->getData());
+            $this->async->trace($apiRequest->getPath(), $apiRequest->getData(), true);
         } else {
             throw new ApiException('Unable to add request(' . $apiRequest->getId() . '): Invalid request method (' . $request_method . ')');
         }
@@ -216,7 +216,7 @@ trait InteractsWithApi
             throw new ApiException('Unable to get response (' . $id . '): Invalid ID');
         }
 
-        return new ApiResponse(Arr::get($this->responses[$id], 'status', 0), Arr::get($this->responses[$id], 'headers', []), Arr::get($this->responses[$id], 'body', []));
+        return new ApiResponse(Arr::get($this->responses[$id], 'status', 0), Arr::get($this->responses[$id], 'headers', []), Arr::get($this->responses[$id], 'body'));
 
     }
 

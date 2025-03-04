@@ -8,7 +8,7 @@ use Bayfront\MultiCurl\Exceptions\ClientException;
 class ClientParent
 {
 
-    private const MULTI_CURL_VERSION = '3.0.0';
+    private const MULTI_CURL_VERSION = '3.0.1';
 
     private string $base_url;
 
