@@ -84,6 +84,19 @@ trait InteractsWithApi
     }
 
     /**
+     * Remove headers for every request.
+     *
+     * @param string $method (Valid METHOD_* constant)
+     * @param array $header_keys (Array of keys to remove)
+     * @return $this
+     */
+    public function forgetHeaders(string $method, array $header_keys): static
+    {
+        Arr::forget(self::$headers[$method], $header_keys);
+        return $this;
+    }
+
+    /**
      * Get headers for every request.
      *
      * @param string $method (Valid METHOD_* constant)

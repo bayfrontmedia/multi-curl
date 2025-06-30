@@ -64,6 +64,7 @@ Public methods include:
 - [getAuthenticationHeaders](#getauthenticationheaders)
 - [setHeaders](#setheaders)
 - [getHeaders](#getheaders)
+- [forgetHeaders](#forgetheaders)
 - [addRequest](#addrequest)
 - [execute](#execute)
 - [getResponse](#getresponse)
@@ -146,6 +147,21 @@ Set headers for every request.
 - `METHOD_POST`
 - `METHOD_PUT`
 - `METHOD_TRACE`
+
+**Returns:**
+
+- `$this`
+
+## forgetHeaders
+
+**Description:**
+
+Remove headers for every request.
+
+**Parameters:**
+
+- `$method` (string): Valid `METHOD_*` constant (see above)
+- `$header_keys` (array): Array of keys to remove
 
 **Returns:**
 
