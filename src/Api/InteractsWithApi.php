@@ -137,11 +137,11 @@ trait InteractsWithApi
             $this->async->setHeaders($this->getAuthenticationHeaders());
         }
 
-        $this->async->setHeaders($apiRequest->getHeaders());
-
         $request_method = $apiRequest->getMethod();
 
         $this->async->setHeaders($this->getHeaders($request_method));
+
+        $this->async->setHeaders($apiRequest->getHeaders()); // Request headers override global headers
 
         if ($request_method === self::METHOD_CONNECT) {
             $this->async->connect($apiRequest->getPath(), $apiRequest->getData(), true);

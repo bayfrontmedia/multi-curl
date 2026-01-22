@@ -12,6 +12,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `Fixed` for any bug fixes.
 - `Security` in case of vulnerabilities
 
+## [3.1.1] - 2026.01.22
+
+### Fixed
+
+- Fixed bug where request-specific headers were not overriding globally defined headers in `InteractsWithApi` trait.
+
 ## [3.1.0] - 2025.06.30
 
 ### Added
